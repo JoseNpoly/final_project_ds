@@ -3,11 +3,88 @@ title: "Final Report for Intro to Data Science"
 output: html_notebook
 ---
 
-This is where the final project report write-up goes. 
+
+```{r}
+library(tidyverse)
+myurl <- "https://github.com/JoseNpoly/datasets/blob/master/worldcup.csv"
+mydata <- read.csv(myurl)
+```
+
+```{r}
+worldcup
+```
+
+```{r}
+arrange(worldcup, Team, Position, Time, Shots)
+```
+
+```{r}
+arrange(worldcup, desc(Passes))
+```
+
+```{r}
+select(worldcup,
+      Passes:Tackles,
+      ends_with("Time"),
+      Saves,
+      Shots)
+```
 
 
-Before you submit, make sure everything runs as expected.
 
-You can add sections as you see fit. Make sure you have a section called "Introduction" at the beginning and a section called "Conclusion" at the end. The rest is up to you!
+```{r}
+worldcup_data = select(worldcup,
+                       Passes:Tackles,
+                       ends_with("Time"),
+                       Saves,
+                       Shots)
+```
 
-_Make use of your knowledge of Markdown to appropriately typeset this report!_
+
+
+```{r}
+mutate(worldcup_data,
+       intercept = Passes - Tackles,
+       goalkeeper_inter = Shots - Saves
+       )
+```
+
+
+```{r}
+summarise(worldcup, pass = mean(Passes, na.rm = TRUE))
+```
+
+
+```{r}
+worldcup %>%
+  group_by(Time) %>%
+  summarize(
+    count = n(),
+    avg = mean(Tackles, na.rm = TRUE)
+  )
+```
+```{r}
+head(worldcup, 10)
+```
+
+```{r}
+filter(worldcup, Position == "Midfielder", Team == "Ghana")
+```
+
+```{r}
+Player_pos = worldcup %>%
+  filter(Position == "Defender")
+Player_pos
+```
+
+
+
+
+
+
+
+
+
+
+
+
