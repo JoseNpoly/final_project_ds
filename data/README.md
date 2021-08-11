@@ -1,14 +1,8 @@
-# Data Description: IMDB popular movies data
+# Data Description: World Cup match players data
 
-(this is an example only. Edit this file as you see fit. It is recommended that you also include a copy of the original data used for this project in this folder - typically in `.csv` format)
+We use the `WorldCupMatches.csv` dataset available at 
+<https://github.com/reisanar/datasets/blob/master/worldcup.csv>
 
-We use the `IMDB_movies.csv` dataset available at 
-<https://github.com/reisanar/datasets/blob/master/IMDB_movies.csv>
+This dataset includes information on players stats that played in the 2010 FIFA World Cup. 
 
-This dataset includes information of popular movies on IMDB in the last 10 years. 
-
-The data fields included are: Title, Genre, Description, Director, Actors, Year, Runtime, Rating, Votes, Revenue, Metascore (score of the movie on the metacritic website)
-
-Below we include some basic statistics for this datasets, including dimensions and range of years ...
-
-(add basic summary if needed. Notice that the information above can be reused for one of the sections for the final project report)
+The data fields included are: Player, Team, Position, Time, Shots, Passes, Tackles, and Saves
