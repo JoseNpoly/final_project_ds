@@ -1,90 +1,320 @@
 ---
 title: "Final Report for Intro to Data Science"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 
 ```{r}
 library(tidyverse)
-myurl <- "https://github.com/JoseNpoly/datasets/blob/master/worldcup.csv"
-mydata <- read.csv(myurl)
+myurl <- "https://raw.githubusercontent.com/reisanar/datasets/master/WorldCupMatches.csv"
+worldcup <- read.csv(myurl)
 ```
+
 
 ```{r}
 worldcup
 ```
+Look at the `world_bank_pop` function
 
 ```{r}
-arrange(worldcup, Team, Position, Time, Shots)
+world_bank_pop
+```
+Look at the `WorldPhone` function
+```{r}
+WorldPhones
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Take a glimpse of worldcup
+
 ```{r}
-arrange(worldcup, desc(Passes))
+glimpse(worldcup)
 ```
+Arrange world cup in `Year, Datetime, Stage, Stadium`
+
+```{r}
+arrange(worldcup, Year, Datetime, Stage, Stadium)
+```
+arrange `Home.Team.Goals and year` in descending order
+
+```{r}
+arrange(worldcup, desc(Home.Team.Goals, Year))
+```
+Select everything that ends with `Goals`
 
 ```{r}
 select(worldcup,
-      Passes:Tackles,
-      ends_with("Time"),
-      Saves,
-      Shots)
+      Home.Team.Goals:Away.Team.Goals,
+      ends_with("Goals"),
+      Half.time.Home.Goals,
+      Half.time.Away.Goals)
 ```
 
-
+create a function called `worldcup_data`
 
 ```{r}
 worldcup_data = select(worldcup,
-                       Passes:Tackles,
-                       ends_with("Time"),
-                       Saves,
-                       Shots)
+                       Home.Team.Goals:Away.Team.Goals,
+                       ends_with("Goals"),
+                       Half.time.Home.Goals,
+                       Half.time.Away.Goals)
+worldcup_data
 ```
 
-
+mutate a function called `Total_fh_goals` and `Total_ht_goals` which make the first value add `Home.Team.Goals` and `Away.Team.Goals` second value add `Half.Time.Home.Goals` and `Half.time.Away.Goals`
 
 ```{r}
 mutate(worldcup_data,
-       intercept = Passes - Tackles,
-       goalkeeper_inter = Shots - Saves
+       Total_fh_goals = Home.Team.Goals + Away.Team.Goals,
+       Total_ht_goals = Half.time.Home.Goals + Half.time.Away.Goals
        )
+```
+Find the mean of Home.Team.Goals
+
+```{r}
+summarise(worldcup, hometeamgoals = mean(Home.Team.Goals, na.rm = TRUE))
+```
+group Year and find the avg
+
+```{r}
+worldcup %>%
+  group_by(Year) %>%
+  summarize(
+    count = n(),
+    avg = mean(Year, na.rm = TRUE)
+  )
+```
+
+List only the first 10 of the Dataset
+
+```{r}
+head(worldcup, 10)
 ```
 
 
+Filter all the `Argentina` games
+
+
 ```{r}
-summarise(worldcup, pass = mean(Passes, na.rm = TRUE))
+filter(worldcup, Home.Team.Name == "Argentina")
+```
+
+Filter all the `Away.Team.Name` of Argentina
+
+```{r}
+argen1 = worldcup %>%
+  filter(Away.Team.Name == "Argentina")
+argen1
+```
+Create a geom_point() to see the Goals scored each year for the Away.Team.Goals for Argentina
+
+```{r}
+ggplot(data = argen1) +
+  geom_point(aes(x = Year, y = Away.Team.Goals))
+```
+
+
+Create function named `argen` that Lists only `Argentina`
+
+
+```{r}
+argen = worldcup %>%
+  filter(Home.Team.Name == "Argentina")
+argen
+```
+Filter all attendance greater than 67800
+
+```{r}
+worldcup %>%
+  filter(Attendance > 67800)
+```
+Arrange to show the most Home.Team.Goals
+
+```{r}
+arrange(worldcup, desc(Home.Team.Goals))
+```
+
+make a geom_point() with x being `Year` and y being `Home.Team.Goals`
+
+```{r}
+ggplot(data = argen) +
+  geom_point(aes(x = Year, y = Home.Team.Goals))
+```
+
+filter all `Home.Team.Name` for `Portugal`
+
+```{r}
+portg = worldcup %>%
+  filter(Home.Team.Name == "Portugal")
+portg
+```
+Filter all `Away.Team.Name` for `Portugal`
+
+```{r}
+portg1 = worldcup %>%
+  filter(Away.Team.Name == "Portugal")
+portg1
+```
+
+make a geom_point() with the portg1 function with x being `Year` and y being `Away.Team.Goals`
+
+```{r}
+ggplot(data = portg1) +
+  geom_point(aes(x = Year, y = Away.Team.Goals))
+```
+Filter just the `Old Trafford Stadium`
+
+```{r}
+stad = worldcup %>%
+  filter(Stadium == "Old Trafford Stadium")
+stad
+```
+Create a boxplot with x being `Stadium` and y being `Attendance`
+
+```{r}
+ggplot(data = stad) +
+  geom_boxplot(aes(x = Stadium, y = Attendance))
+```
+
+
+
+
+```{r}
+all_arg_players = worldcup %>%
+  filter(Home.Team.Name == "Argentina")
+all_arg_players
+```
+
+```{r}
+all_por_players = worldcup %>%
+  filter(Home.Team.Name == "Portugal")
+all_por_players
 ```
 
 
 ```{r}
 worldcup %>%
-  group_by(Time) %>%
-  summarize(
-    count = n(),
-    avg = mean(Tackles, na.rm = TRUE)
-  )
+  filter(Year == 1990, Home.Team.Name == "Argentina")
 ```
-```{r}
-head(worldcup, 10)
-```
+create a geom_point() x being `Year` and y being `Home.Team.Goals`
 
 ```{r}
-filter(worldcup, Position == "Midfielder", Team == "Ghana")
+ggplot(data = portg) +
+  geom_point(aes(x = Year, y = Home.Team.Goals))
 ```
+Filter `RoundID > 300` and `Away.Team.Initials == "ARG"`
 
 ```{r}
-Player_pos = worldcup %>%
-  filter(Position == "Defender")
-Player_pos
+worldcup %>%
+  filter(RoundID > "300", Away.Team.Initials == "ARG")
+```
+
+
+```{r}
+worldcup %>%
+  filter(RoundID > "300", Away.Team.Initials == "POR")
+```
+
+create a geom_point() and make x `Year` and `Attendance`
+
+```{r}
+ggplot(data = worldcup) +
+  geom_point(aes(x = Year, y = Attendance))
+```
+Filter `Year > 1996` and `RoundID > 6000`
+
+```{r}
+worldcup %>%
+  filter(Year > 1996, RoundID > 6000)
+```
+
+Create geom_point() `City` as color `size` as `Home.Team.Goals` and `alpha = 0.9`
+
+
+```{r}
+ggplot(data = worldcup) +
+  geom_point(aes(x = Year, y = Attendance,
+                 color = City, size = Home.Team.Goals),
+             alpha = 0.9)
+```
+Which team had the most Home Team Goals?
+
+```{r}
+worldcup %>%
+  arrange(desc(Home.Team.Goals))
+```
+Which team had the most Away Team Goals?
+
+
+```{r}
+worldcup %>%
+  arrange(desc(Away.Team.Goals))
+```
+
+Make a bar graph for Year
+
+```{r}
+ggplot(data = worldcup) +
+  geom_bar(aes(x = Year))
+```
+Count the total amount of Referees
+
+```{r}
+worldcup %>%
+  count(Referee)
+```
+Create a histogram for the Attendance
+
+```{r}
+ggplot(data = worldcup) +
+  geom_histogram(aes(x = Attendance))
+```
+Use a dark green color to draw a geom_point
+
+```{r}
+ggplot(worldcup, aes(x = Year, y = Attendance)) + 
+  geom_point(color = "darkgreen")
 ```
 
 
 
+Change the title to home team goals and use a bargraph
+
+```{r}
+ggplot(worldcup, aes(x = Home.Team.Goals)) + 
+  geom_histogram(fill = "green", color = "blue") + 
+  ggtitle("Home Team goals") + 
+  xlab("Goals") + xlim(c(0, 10))
+```
+
+Create a scatter plot for Away Team Goals
 
 
+```{r}
+ggplot(worldcup, aes(x = Home.Team.Goals, y = Half.time.Home.Goals)) + 
+  geom_point()
+```
+select all rows except Referee
 
-
-
-
-
+```{r}
+worldcup %>%
+  select(-Referee)
+```
 
 
