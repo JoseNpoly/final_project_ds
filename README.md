@@ -10,4 +10,4 @@ Team members:
 
 Our project investigates the main characteristics of popular movies in recent years.
 We will be using the data available at: 
-<https://github.com/JoseNpoly/datasets/blob/master/worldcup.csv> 
+<https://github.com/reisanar/datasets/blob/master/WorldCupMatches.csv> 
