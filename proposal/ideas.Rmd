@@ -3,16 +3,30 @@ title: "Project Proposal"
 output: html_notebook
 ---
 
-(notice that you can reuse some of the sections below for the final project report)
-
 ## Section 1. Introduction
 
-Include a brief **introduction or motivation** here
+My project is based on the World Cup matches from 1930 to 2014. This dataset includes information on all the World Cup Matches from 1930 to 2014
+
+The data fields included are: Year, Datetime, Stage, 
+Stadium, City, home team goals, Away team goals, 
+Away team name, Win conditions, attendance, Half 
+time home goals, Half time Away Goals, Referee, 
+Assistant.1, Assistant.2, RoundID, MatchID, Home Team Initials, 
+Away Team Initials
+
 
 ## Section 2. Data Analysis Plan
 
-List any **initial questions** you plan to explore in this project. 
+Find the mean of a column
+
+filter data sets
+
+select data sets
+
+go over things that we did in class
 
 ## Section 3. Data
 
 Include a brief **description of your dataset** (source, available attributes, format, etc.)
+
+Data set using is the WorldCupMatches.csv with tidyverse

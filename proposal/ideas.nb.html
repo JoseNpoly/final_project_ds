@@ -215,22 +215,26 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<p>(notice that you can reuse some of the sections below for the final project report)</p>
 <div id="section-1.-introduction" class="section level2">
 <h2>Section 1. Introduction</h2>
-<p>Include a brief <strong>introduction or motivation</strong> here</p>
+<p>My project is based on the World Cup matches from 1930 to 2014. This dataset includes information on all the World Cup Matches from 1930 to 2014</p>
+<p>The data fields included are: Year, Datetime, Stage, Stadium, City, home team goals, Away team goals, Away team name, Win conditions, attendance, Half time home goals, Half time Away Goals, Referee, Assistant.1, Assistant.2, RoundID, MatchID, Home Team Initials, Away Team Initials</p>
 </div>
 <div id="section-2.-data-analysis-plan" class="section level2">
 <h2>Section 2. Data Analysis Plan</h2>
-<p>List any <strong>initial questions</strong> you plan to explore in this project.</p>
+<p>Find the mean of a column</p>
+<p>filter data sets</p>
+<p>select data sets</p>
+<p>go over things that we did in class</p>
 </div>
 <div id="section-3.-data" class="section level2">
 <h2>Section 3. Data</h2>
 <p>Include a brief <strong>description of your dataset</strong> (source, available attributes, format, etc.)</p>
+<p>Data set using is the WorldCupMatches.csv with tidyverse</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUHJvamVjdCBQcm9wb3NhbCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKKG5vdGljZSB0aGF0IHlvdSBjYW4gcmV1c2Ugc29tZSBvZiB0aGUgc2VjdGlvbnMgYmVsb3cgZm9yIHRoZSBmaW5hbCBwcm9qZWN0IHJlcG9ydCkKCiMjIFNlY3Rpb24gMS4gSW50cm9kdWN0aW9uCgpJbmNsdWRlIGEgYnJpZWYgKippbnRyb2R1Y3Rpb24gb3IgbW90aXZhdGlvbioqIGhlcmUKCiMjIFNlY3Rpb24gMi4gRGF0YSBBbmFseXNpcyBQbGFuCgpMaXN0IGFueSAqKmluaXRpYWwgcXVlc3Rpb25zKiogeW91IHBsYW4gdG8gZXhwbG9yZSBpbiB0aGlzIHByb2plY3QuIAoKIyMgU2VjdGlvbiAzLiBEYXRhCgpJbmNsdWRlIGEgYnJpZWYgKipkZXNjcmlwdGlvbiBvZiB5b3VyIGRhdGFzZXQqKiAoc291cmNlLCBhdmFpbGFibGUgYXR0cmlidXRlcywgZm9ybWF0LCBldGMuKQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlByb2plY3QgUHJvcG9zYWwiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIyBTZWN0aW9uIDEuIEludHJvZHVjdGlvbg0KDQpNeSBwcm9qZWN0IGlzIGJhc2VkIG9uIHRoZSBXb3JsZCBDdXAgbWF0Y2hlcyBmcm9tIDE5MzAgdG8gMjAxNC4gVGhpcyBkYXRhc2V0IGluY2x1ZGVzIGluZm9ybWF0aW9uIG9uIGFsbCB0aGUgV29ybGQgQ3VwIE1hdGNoZXMgZnJvbSAxOTMwIHRvIDIwMTQNCg0KVGhlIGRhdGEgZmllbGRzIGluY2x1ZGVkIGFyZTogWWVhciwgRGF0ZXRpbWUsIFN0YWdlLCANClN0YWRpdW0sIENpdHksIGhvbWUgdGVhbSBnb2FscywgQXdheSB0ZWFtIGdvYWxzLCANCkF3YXkgdGVhbSBuYW1lLCBXaW4gY29uZGl0aW9ucywgYXR0ZW5kYW5jZSwgSGFsZiANCnRpbWUgaG9tZSBnb2FscywgSGFsZiB0aW1lIEF3YXkgR29hbHMsIFJlZmVyZWUsIA0KQXNzaXN0YW50LjEsIEFzc2lzdGFudC4yLCBSb3VuZElELCBNYXRjaElELCBIb21lIFRlYW0gSW5pdGlhbHMsIA0KQXdheSBUZWFtIEluaXRpYWxzDQoNCg0KIyMgU2VjdGlvbiAyLiBEYXRhIEFuYWx5c2lzIFBsYW4NCg0KRmluZCB0aGUgbWVhbiBvZiBhIGNvbHVtbg0KDQpmaWx0ZXIgZGF0YSBzZXRzDQoNCnNlbGVjdCBkYXRhIHNldHMNCg0KZ28gb3ZlciB0aGluZ3MgdGhhdCB3ZSBkaWQgaW4gY2xhc3MNCg0KIyMgU2VjdGlvbiAzLiBEYXRhDQoNCkluY2x1ZGUgYSBicmllZiAqKmRlc2NyaXB0aW9uIG9mIHlvdXIgZGF0YXNldCoqIChzb3VyY2UsIGF2YWlsYWJsZSBhdHRyaWJ1dGVzLCBmb3JtYXQsIGV0Yy4pDQoNCkRhdGEgc2V0IHVzaW5nIGlzIHRoZSBXb3JsZEN1cE1hdGNoZXMuY3N2IHdpdGggdGlkeXZlcnNlDQo=</div>
 
 
 
